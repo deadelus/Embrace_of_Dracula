@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+	<head>
+		<script src="js/jquery.js"></script>
+		<script src="js/sorcery.js"></script>
+		<link type="text/css" rel="stylesheet" href="css/style.css" />
+		<meta lang="fr" xml:lang="fr" content="text/html;charset=UTF-8" http-equiv="Content-Type">
+		<title>Sword & Sorcery</title>
+	</head>
+		
+	<body>
+		<div id="status">
+			<div class="life">
+				Life : <span class="value">--</span>
+			</div>
+		</div>
+
+		<div class="container">
+			<section id="intro">
+				<div class="section">
+					<h2>Epic dungeon of the evil necromancer</h2>
+					En voila un jeu qu'il est bien.
+					
+					<action name="reset"/>
+					
+					<button go="wakeUp">Commencer l'aventure !</button>
+				</div>
+			</section>
+			<section id="wakeUp">
+				<div class="section">
+					Vous ouvez les yeux... Tout est noir autour de vous...
+					
+					<action name="start"/>
+					
+					<button go="death">Crever</button>
+					<button go="exit">Vivre</button>
+				</div>
+			</section>
+			<section id="exit">	
+				<div class="section" >
+					Vous voyez la lumière du jour... Vous avez réussi à vous échapper !
+					<button go="intro">Fin</button>
+				</div>
+			</section>
+			<section id="death">
+				<div class="section" >
+					Vous êtes mort(e) ! C'est balot.
+					<button go="intro">Fin</button>
+				</div>
+			</section>
+		</div>
+	</body>
+
+</html>
