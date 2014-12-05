@@ -10,44 +10,89 @@
 		
 	<body>
 		<div id="status">
-			<div class="life">
+			<span id="inventaire">
+				<i>Inventaire</i>
+			</span>
+			<div id="playerlife">
 				Life : <span class="value">--</span>
 			</div>
 		</div>
 
+		<ul target="inventaire" class="panel">
+			<h1 id="pseudo">
+				Nonamed
+			</h1>
+			<div id="lvl">
+				Niveau : <span>1</span>
+			</div>
+			<div id="xp">
+				Exp : <span>0</span>
+			</div>
+			<h3>Inventaire</h3>
+			<ul id="items">
+				<!-- <li id="name"><img src="#" alt="#"></li> -->
+				<key id="next"><img src="img/key.jpg" alt="key"></key>
+			</ul>
+		</ul>
 		<div class="container">
 			<section id="intro">
 				<div class="section">
-					<h2>Epic dungeon of the evil necromancer</h2>
-					En voila un jeu qu'il est bien.
+					<h2>Embrace of Dracula</h2>
+					<p>
+					En 1447, un comte nommé Dracula vivait dans un château sur les hauteurs du village de Sighișoara, en Transylvanie. Un siècle plus tard, une nuit ou les éclairs fendaient le ciel, le tombeau du comte Dracula fut frappé par la foudre. <br>
+					Depuis les disparitions successives de villageois aux alentours du château furent grandir les rumeurs à propos du comte.Un paysan vivant aux alentours du château assure qu’il peut apercevoir une lumière tout en haut du donjon avant chaque disparition. Certaine rumeur parle même que le comte serait en vie et qu’il se serait transformé en vampire. <br>
+					Vous êtes Simon Belmont, fils de Sir Adrian Farenheights Tepes, et petit-fils du comte Dracula. Vous seul êtes capable de vaincre votre aïeul et sauver les habitants de Sighișoara. Armé d’une épée, votre aventure commence devant le château.
+					</p>
+					<action name="reset"></action>
 					
-					<action name="reset"/>
-					
-					<button go="wakeUp">Commencer l'aventure !</button>
+					<button go="start">Commencer l'aventure !</button>
 				</div>
 			</section>
-			<section id="wakeUp">
+
+			<section id="start">
+				<div class="section">
+					<h2>START</h2>
+					En voila un jeu qu'il est bien.	
+					<action name="start"></action>
+
+					<button go="one" door='next'>Commencer l'aventure !</button>
+				</div>
+			</section>
+
+			<section id="one">
 				<div class="section">
 					Vous ouvez les yeux... Tout est noir autour de vous...
 					
-					<action name="start"/>
 					
 					<button go="death">Crever</button>
 					<button go="exit">Vivre</button>
 				</div>
 			</section>
+
 			<section id="exit">	
 				<div class="section" >
 					Vous voyez la lumière du jour... Vous avez réussi à vous échapper !
 					<button go="intro">Fin</button>
 				</div>
 			</section>
+
 			<section id="death">
 				<div class="section" >
 					Vous êtes mort(e) ! C'est balot.
 					<button go="intro">Fin</button>
 				</div>
 			</section>
+
+			<div id="battlezone">
+				<ul id="battles">
+					<h2>Combat !</h2>
+					<li class="monster" id="one">
+						<img src="#" alt="#" class="#">
+						<span class="hit" id="idmonstre">Frapper !</span>
+						<div id="life" life="100"></div>
+					</li>
+				</ul>
+			</div>
 		</div>
 	</body>
 
