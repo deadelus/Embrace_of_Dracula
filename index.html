@@ -78,66 +78,107 @@
 			<!-- RDC -->
 			<section id="hall">
 				<div class="section">
-					[...]
-					<button go="#">#</button>
+					Hum, le hall. Il fait froid ici.<br>
+					J'ai cru entendre du bruit à l'étage, ce chateau est surement hanté.. <br>
+					Allez, finissons-en au plus vite !
+					<button go="reception">Monter les escaliers.</button>
+					<button go="corridor">Allez dans le ccouloir.</button>
+					<button go="cachot">Voir le cachot.</button>
+					<button go="death">Se pourfendre avec son épée !</button>
 				</div>
 			</section>
 
 			<section id="corridor">
 				<div class="section">
-					[...]
-					<button go="#">#</button>
+					Des têt.. des têtes accrochées aux murs du couloirs... <br>
+					"Haaarrgg" <br>
+					Elles... parlent !? 
+					<button go="room1">Se réfugier dans la chambre droite.</button>
+					<button go="room2">Se réfugier dans la chambre gauche.</button>
+					<button go="kitchen">Allez en cuisine manger un bout.</button>
+					<button go="diningroom">La salle à manger.</button>
+					<button go="hall">Revenir dans le hall.</button>
 				</div>
 			</section>
 
 			<section id="room1">
 				<div class="section">
-					[...]
-					<button go="#">#</button>
+					Une chambre banale, je ne trouverai rien ici..<br>
+					<button id="search">Fouiller la chambre.</button>
+					<button go="corridor">Sortir d'ici.</button>
 				</div>
 			</section>
 
 			<section id="room2">
 				<div class="section">
-					[...]
-					<button go="#">#</button>
+					Une chambre banale, je ne.. Qu'est ce ?<br>
+					Un message sur la tabele de chevet.
+					<button id="nothing">Fouiller la chambre.</button>
+					<button id="clue1">Lire le message.</button>
+					<button go="corridor">Sortir d'ici.</button>
 				</div>
 			</section>
 
 			<section id="diningroom">
 				<div class="section">
-					[...]
-					<button go="#">#</button>
+					Le cadavre d'un homme gis sur le sol.. Il est mort depuis peu.<br>
+					Un calice sur la table est rempli de sang, Dracula n'est pas loin !
+					<button id="poison">Gouter le sang.</button>
+					<button id="corridor">Sortir d'ici.</button>
 				</div>
 			</section>
 
 			<section id="kitchen">
 				<div class="section">
-					[...]
-					<button go="#">#</button>
+					La cuisine. Il faut prendre des forces !<br>
+					Il y a un monte-charge ici, cela n'a pas très l'air solide..<br>
+					<button id="eat">Manger un bout.</button>
+					<button go="office">Essayer le monte-charge.</button>
+					<button go="corridor">Sortir d'ici.</button>
 				</div>
 			</section>
 			<!-- FIN RDC -->
 
 			<!-- LVL -1 -->
-			<section id="cave">
+			<section id="cachot">
 				<div class="section">
-					[...]
-					<button go="#">#</button>
+					<div class="dialogue">
+						Dracula - Mouhahahahahahaha<br>
+						Belmont - Dracula ?<br>
+						Dracula - Tu vas mourir ici ! Hahaha !<br>
+						Belmont - Allez approche ! Viens te battre ! <br>
+						Belmont - ... , il est parti. Le lache !
+						<hr>
+					</div>
+					Le cachot, un lieu dangereux, il vaudrait mieux faire attention<br>
+					ou mettre les pieds.. Les cellules sont peut être occupées.<br>
+					<button id="hit">Cellule 1</button>
+					<button go="cell2">Cellule 2</button>
+					<button id="hit">Cellule 3</button>
+					<button id="hit">Cellule 4</button>
+					<button id="hit">Cellule 5</button>
+					<button id="hit">Cellule 6</button>
+					<button id="hit">Cellule 7</button>
+					<button id="cell8">Cellule 8</button>
+					<button go="stock">De la lumiere au fond, allez voir.</button>
 				</div>
 			</section>
 
 			<section id="cell2">
 				<div class="section">
-					[...]
-					<button go="#">#</button>
+					La cellule est vide, ça sent le pourri..<br>
+					Je vois quelque chose qui brille par terre.. <br>
+					<button id="key">Remuer la poussière</button>
+					<button go="cachot">Sortir d'ici.</button>
 				</div>
 			</section>
 
 			<section id="cell8">
 				<div class="section">
-					[...]
-					<button go="#">#</button>
+					Des rats devore un cadavre.. C'était surement un des paysans disparu.<br>
+					Il y a un papier dans ses mains.
+					<button id="clue2">Remuer la poussière</button>
+					<button go="cachot">Sortir d'ici.</button>
 				</div>
 			</section>
 
