@@ -33,7 +33,6 @@ $( function() {
 
 	var lesObjets = [];
 	var lesMonstres = [];
-
 	var joueur = new Joueur(null,'noName','noName','noName',null,null,0,100,1,5);
 
 	/*
