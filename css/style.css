@@ -448,6 +448,21 @@ h2 {
 	font-weight : bold;
 }
 
+#map{
+  position: fixed;
+  z-index: 1000000;
+  top: 50px;
+  right: 5px;
+  width: 250px;
+  height: 250px;
+  border: solid 1px lightgrey;
+}
+
+#map img{
+  height: inherit;
+  width: inherit;
+}
+
 section{
 	position: fixed;
 	width: 100%;
