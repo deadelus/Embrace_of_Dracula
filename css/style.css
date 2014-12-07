@@ -453,7 +453,7 @@ h2 {
   z-index: 1000000;
   top: 50px;
   right: 5px;
-  width: 250px;
+  width: 314px;
   height: 250px;
   border: solid 1px lightgrey;
 }
@@ -484,9 +484,10 @@ section{
 	width : 100%;
 	text-align : center;
 	border-bottom : 1px solid lightGray;
-	background: url(../img/wall.jpg);
+  background-color: #000000;
+	/*background: url(../img/bg/wall.jpg);
   background-size: 10%;
-  background-repeat: repeat;
+  background-repeat: repeat;*/
 	z-index: 100000;
 }
 
@@ -505,10 +506,11 @@ section{
   color: lightGray;
   text-align: justify;
 	position: relative;
+  top: 50px;
 	padding : 10px;
 	margin : auto;
 	max-width : 600px;
-  background: url(../img/panel3.jpg);
+  background: url(../img/bg/panel3.jpg);
   border: solid 1px lightgrey; 
   background-size: 20%;
   background-repeat: repeat;
@@ -516,12 +518,16 @@ section{
 
 #battlezone{
   position: fixed;
-  padding : 10px;
-  margin : auto;
-  max-width : 200px;
+  top : 310px;
+  right : 5px;
+  width : 250px;
   border : 1px solid lightGray;
   z-index: 10000000;
   background-color: #000000;
+}
+
+#battlezone #battles{
+  padding: 10px;
 }
 
 .section button {
@@ -564,7 +570,7 @@ section{
   z-index: 100000;
   width: 300px;
   height: 100%;
-  background: url(../img/panel3.jpg);
+  background: url(../img/bg/panel3.jpg);
   border-right: solid 1px lightgrey; 
   background-size: 40%;
   background-repeat: repeat;
@@ -619,7 +625,7 @@ section{
   clear: both;
 }
 
-.monster{
+#monstre{
   display: block;
   list-style: none;
   background-color: #999999;
@@ -628,7 +634,7 @@ section{
   margin: 3px 0px;
 }
 
-.monster img{
+#monstre img{
   background-color: #333333;
   display: inline-block;
   width: 70px;

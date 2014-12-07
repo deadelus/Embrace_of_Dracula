@@ -35,30 +35,9 @@ $( function() {
 	var lesMonstres = [];
 	var joueur = new Joueur(null,'noName','noName','noName',null,null,0,100,1,5);
 
-	/*
-	$(document).ready(function(){
-		
-	});
-	*/
 
-
-	//alert(lejoueur.nom);
-	/*Centre les éléments*/
 	var size = $( window ).height();
 	var largeur = $( window ).width();
-	//var panelwidth = $('#panel').width();
-	
-
-	var container = $(".container");
-	container.height(size);
-	var centerY = (size / 3);// - ($(".section").height() / 2);
-	var centerX = (largeur/2)-($('#battlezone').width()/2);
-
-	$(".section").css("top", centerY);
-	$('#battlezone').hide();
-	$('#battlezone').css("left", centerX+'px');
-	$('*[target=inventaire]').toggle();
-	
 	var lvlup = 20;
 	var attaquer;
 	var isStarted = false;
@@ -73,6 +52,16 @@ $( function() {
 	var chapters = $("section");
 	var status = $("#status");
 	var battle = $("#battles");
+	
+
+	var container = $(".container");
+	container.height(size);
+
+
+	$('#battlezone').hide();
+	$('*[target=inventaire]').toggle();
+	
+	
 
 	setInterval(function(){
 		if(battleStarted){
@@ -84,7 +73,6 @@ $( function() {
 			}
 		}
 	}, 1000);
-	//var buttons = $(".section button");
 
 	if(!isStarted){
 		startGame();
@@ -180,7 +168,8 @@ $( function() {
 	
 	function gotoSection(key) {
 		var chapter = chapters.filter("#" + key);
-		chapter.css("background-image", "url(img/"+key+".jpg");
+		chapter.css("background-image", "url(img/bg/wall.jpg");
+		chapter.css("background-repeat", "repeat");
 		var currentChapter = $("section");
 
 		slide(chapter, currentChapter);
@@ -216,7 +205,7 @@ $( function() {
 	function startGame() {
 		isStarted = true;
 		chapters.not("#intro").remove();
-		$("#intro").css("background-image", "url(img/intro.jpg)");
+		$("#intro").css("background-image", "url(img/bg/intro.jpg)");
 		$("#intro").css("background-position", "center");
 	}
 	
@@ -381,21 +370,20 @@ $( function() {
 
 	function monsterpop(){
 		var nb_monstre = Math.floor((Math.random() * (lesMonstres.length-1)) + 0);
-		$('#battlezone').css("top", centerY+$('.section').height()+50);
 		$('#battlezone h2').html(lesMonstres[nb_monstre].nom);
-		$('#battlezone #one img').attr({
-			src : 'img/'+lesMonstres[nb_monstre].nom+'.jpg',
+		$('#monstre img').attr({
+			src : 'img/monsters/'+lesMonstres[nb_monstre].nom+'.jpg',
 			alt : lesMonstres[nb_monstre].nom
 		});
 
-		$('#battlezone #one span').attr({
+		$('#monstre span').attr({
 			id : lesMonstres[nb_monstre].nom,
 		});
 
-		$('#one #life').attr({
+		$('#monstre #life').attr({
 			life : lesMonstres[nb_monstre].vie
 		});
-		$('#one #life').css('width', '100%');
+		$('#monstre #life').css('width', '100%');
 
 		monsterlife = lesMonstres[nb_monstre].vie;
 		defaultlife = lesMonstres[nb_monstre].vie;
@@ -407,7 +395,7 @@ $( function() {
 	}
 
 	function clepop(id){
-		$('#items').append('<key id="'+id+'"><img src="img/key.jpg" alt="key"></key>');			
+		$('#items').append('<key id="'+id+'"><img src="img/items/key.jpg" alt="key"></key>');			
 	}
 
 	function potionpop(){
@@ -416,7 +404,7 @@ $( function() {
 			var nb_item = Math.floor((Math.random() * (lesObjets.length-1)) + 0);
 			if(lesObjets[nb_item].type == "potion"){
 				alert('Vous avez trouvé une potion !');
-				$('#items').append('<li id="'+lesObjets[nb_item].nom+'"><img src="img/'+
+				$('#items').append('<li id="'+lesObjets[nb_item].nom+'"><img src="img/items/'+
 					lesObjets[nb_item].nom+'.jpg" alt="'+lesObjets[nb_item].nom+'"></li>');
 			}
 		}				
