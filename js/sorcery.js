@@ -34,7 +34,7 @@ $( function() {
 	var lesObjets = [];
 	var lesMonstres = [];
 	var joueur = new Joueur(null,'noName','noName','noName',null,null,0,100,1,5);
-
+	var map = $("#map img");
 
 	var size = $( window ).height();
 	var largeur = $( window ).width();
@@ -49,6 +49,7 @@ $( function() {
 	var defaultlife;
 	var percent;
 
+	var error = $('#error');
 	var chapters = $("section");
 	var status = $("#status");
 	var battle = $("#battles");
@@ -60,16 +61,18 @@ $( function() {
 
 	$('#battlezone').hide();
 	$('*[target=inventaire]').toggle();
-	
+	map.hide();
+	status.hide();
+	error.hide();
 	
 
 	setInterval(function(){
 		if(battleStarted){
 			var popornot = Math.floor((Math.random() * 3) + 0);
-			if(popornot === 0 && !poped){
+			if(poped){
 				$('#battlezone').fadeIn(400);
 				monsterpop();
-				poped = true;
+				poped = false;
 			}
 		}
 	}, 1000);
@@ -82,17 +85,12 @@ $( function() {
 	}
 
 	$(document).on("click", "section button", function() {
-		if($('section').has(action)){
+		if($('section').has('action')){
 			action($('action').attr('name'));
 		}
 		if($(this).attr("door")){
-			alert('vous avez besoin d\'une clé !');
-		}
-		else if($(this).attr("go") == "start"){
-			gotoSection($(this).attr("go"));
-			battleStarted = true;
-			poped = false;
-			//alert('text');
+			$('#error p').html('Vous avez besoin d\'une clé !');
+			error.show();
 		}
 		else if($(this).attr("go") == "exit"){
 			gotoSection($(this).attr("go"));
@@ -103,6 +101,9 @@ $( function() {
 			gotoSection($(this).attr("go"));
 			endGame();
 			clearInterval(attaquer);
+		}else if($(this).attr("go") == "start"){
+			status.show();
+			gotoSection($(this).attr("go"));
 		}
 		else{
 			gotoSection($(this).attr("go"));
@@ -120,7 +121,7 @@ $( function() {
 				$('#items').html('');
 				$('#playerlife').html('PV : ' + joueur.vie);
 				clepop('next');
-				battleStarted = true;
+				battleStarted = false;
 				poped = false;
 			break;
 		}
@@ -147,12 +148,16 @@ $( function() {
 		$(this).remove();
 	} );
 
+	$(document).on("click", "#resume", function() {
+		error.hide();
+	});
+
 	$(document).on("click", "#battles .hit", function() {
 		monsterlife = monsterlife - joueur.force;
 		percent = (monsterlife/defaultlife)*100; 
 		$(this).next('#life').css("width", percent+'%');
 		if(percent <= 0){
-			poped = false;
+			poped = true;
 			$('#battlezone').fadeOut(400);
 			clearInterval(attaquer);
 			potionpop();
@@ -168,13 +173,20 @@ $( function() {
 	
 	function gotoSection(key) {
 		var chapter = chapters.filter("#" + key);
-		chapter.css("background-image", "url(img/bg/wall.jpg");
-		chapter.css("background-repeat", "repeat");
+		chapter.css("background-image", "url(img/bg/wall.jpg)");
 		var currentChapter = $("section");
 
 		slide(chapter, currentChapter);
-
-		container.append(chapter);	
+		container.append(chapter);
+		
+		if(key !='intro' && key !='death'){
+			map.attr({
+				id: key,
+				src: 'img/map/'+key+'.png',
+				alt: key
+			});
+			map.show();
+		}
 	}
 	
 	function use(id){
@@ -206,13 +218,15 @@ $( function() {
 		isStarted = true;
 		chapters.not("#intro").remove();
 		$("#intro").css("background-image", "url(img/bg/intro.jpg)");
-		$("#intro").css("background-position", "center");
 	}
 	
 	function endGame() {
 		$('#battlezone').hide();
 		clearInterval(attaquer);
 		battleStarted = false;
+		map.hide();
+		status.hide();
+		$('*[target=inventaire]').hide();
 	}
 
 	function slide(chapter, currentChapter){
@@ -221,8 +235,12 @@ $( function() {
 
 		var largeur = $(document).width();
 		var hauteur = $(document).height();
-
 		var direction = Math.floor((Math.random() * 4) + 1);
+
+		if(chapter.attr('id') == 'hall'){
+			battleStarted = true;
+			poped = true;
+		}
 
 		//alert(largeur);
 		switch(direction){
@@ -403,7 +421,8 @@ $( function() {
 		if(pop%2 == 0){
 			var nb_item = Math.floor((Math.random() * (lesObjets.length-1)) + 0);
 			if(lesObjets[nb_item].type == "potion"){
-				alert('Vous avez trouvé une potion !');
+				$('#error p').html('Vous avez trouvé une potion !');
+				error.show();
 				$('#items').append('<li id="'+lesObjets[nb_item].nom+'"><img src="img/items/'+
 					lesObjets[nb_item].nom+'.jpg" alt="'+lesObjets[nb_item].nom+'"></li>');
 			}
