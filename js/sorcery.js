@@ -343,14 +343,14 @@ $( function() {
 		status.hide();
 		$('*[target=inventaire]').hide();
 	}
-//ajout dracula
+	//ajout dracula
 	function youwin(){
 		endGame();
 		gotoSection('end');
 	}
-//ajout dracula
+	//ajout dracula
 	function finalFight(){
-		battleStarted = false;
+		//battleStarted = false;
 		$('#battlezoneboss').show();
 		$('#battlezoneboss h2').html('Dracula');
 		$('#boss img').attr({
@@ -366,7 +366,7 @@ $( function() {
 		draculalife = '100';
 		draculadefaultlife = '100';
 		attaquer = setInterval(function(){
-			hit('20');
+			hit(Math.floor((Math.random() * 20) + 1));
 		}, 1500);
 	}
 
