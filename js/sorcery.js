@@ -54,7 +54,7 @@ $( function() {
 	var chapters = $("section");
 	var status = $("#status");
 	var battle = $("#battles");
-
+	var img = $('<img/>');
 	
 
 	var container = $(".container");
@@ -88,6 +88,8 @@ $( function() {
 
 	$(document).on("click", "section button[id]", function() {
 		var id = $(this).attr("id");
+		
+		
 		switch(id){
 			case 'nothing':
 				$('#error p').html('Il n\'y a rien ici !');
@@ -97,12 +99,24 @@ $( function() {
 
 			break;
 			case 'clue1':
-				$('#error p').html('Indice 1');
+				img.attr({
+					src: 'img/'+id+'.png',
+					alt: id
+				});
+				$('#error p').html(img);
 				error.show();
+				$(this).attr('id', 'nothing');
+				$('#clues').append('<li class="clue" id="'+id+'"><img src="img/ico-clue.png" alt="clue"/></li>');
 			break;
 			case 'clue2':
-				$('#error p').html('Indice 1');
+				img.attr({
+					src: 'img/'+id+'.png',
+					alt: id
+				});
+				$('#error p').html(img);
 				error.show();
+				$(this).attr('id', 'nothing');
+				$('#clues').append('<li class="clue" id="'+id+'"><img src="../img/ico-clue.png" alt="clue"/></li>');
 			break;
 			case 'hit':
 				$('#error p').html('Rrrrrrh Attention aux prisonniers !!! ');
@@ -121,7 +135,6 @@ $( function() {
 
 	$(document).on("click", "#clues .clue", function() {
 		var id = $(this).attr("id");
-		var img = $('<img/>');
 		img.attr({
 			src: 'img/'+id+'.png',
 			alt: id
@@ -145,7 +158,7 @@ $( function() {
 			$('#error p').html('Vous avez besoin d\'une clé !');
 			error.show();
 		}
-		else if($(this).attr("go") == "exit"){
+		else if($(this).attr("go") == "end"){
 			gotoSection($(this).attr("go"));
 			endGame();
 			clearInterval(attaquer);
@@ -172,6 +185,9 @@ $( function() {
 				$('#lvl span').html(1);
 				$('#xp span').html(0);
 				$('#items').html('');
+				$('#clues').html('');
+				$('#clue1').attr('id', 'clue1');
+				$('#clue2').attr('id', 'clue2');
 				$('#playerlife').html('PV : ' + joueur.vie);
 				clepop('next');
 				battleStarted = false;
