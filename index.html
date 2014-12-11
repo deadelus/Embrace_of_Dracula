@@ -30,8 +30,10 @@
 			</div>
 			<h3>Inventaire</h3>
 			<ul id="items">
-				<!-- <li id="name"><img src="#" alt="#"></li>
-				<key id="next"><img src="img/key.jpg" alt="key"></key> -->
+				<!-- <li id="next"><img src="img/key.jpg" alt="key"></li> -->
+			</ul>
+			<ul id="clues">
+				<!-- <li class='clue' id="clue1"><img src="img/ico-clue.png" alt="clue1"></li> -->
 			</ul>
 		</ul>
 
@@ -81,7 +83,7 @@
 					J'ai cru entendre du bruit à l'étage, ce chateau est surement hanté.. <br>
 					Allez, finissons-en au plus vite !
 					<button go="reception">Monter les escaliers.</button>
-					<button go="corridor">Allez dans le ccouloir.</button>
+					<button go="corridor">Allez dans le couloir.</button>
 					<button go="cachot">Voir le cachot.</button>
 					<button go="death">Se pourfendre avec son épée !</button>
 				</div>
@@ -92,8 +94,8 @@
 					Des têt.. des têtes accrochées aux murs du couloirs... <br>
 					"Haaarrgg" <br>
 					Elles... parlent !? 
-					<button go="room1">Se réfugier dans la chambre droite.</button>
-					<button go="room2">Se réfugier dans la chambre gauche.</button>
+					<button go="room2">Se réfugier dans la chambre droite.</button>
+					<button go="room1">Se réfugier dans la chambre gauche.</button>
 					<button go="kitchen">Allez en cuisine manger un bout.</button>
 					<button go="diningroom">La salle à manger.</button>
 					<button go="hall">Revenir dans le hall.</button>
@@ -103,7 +105,7 @@
 			<section id="room1">
 				<div class="section">
 					Une chambre banale, je ne trouverai rien ici..<br>
-					<button id="search">Fouiller la chambre.</button>
+					<button id="labo">Fouiller la chambre.</button>
 					<button go="corridor">Sortir d'ici.</button>
 				</div>
 			</section>
@@ -136,7 +138,7 @@
 					<button go="corridor">Sortir d'ici.</button>
 				</div>
 			</section>
-			<!-- FIN RDC -->
+			<!-- FIN RDC
 
 			<!-- LVL -1 -->
 			<section id="cachot">
@@ -158,7 +160,7 @@
 					<button id="hit">Cellule 5</button>
 					<button id="hit">Cellule 6</button>
 					<button id="hit">Cellule 7</button>
-					<button id="cell8">Cellule 8</button>
+					<button go="cell8">Cellule 8</button>
 					<button go="stock">De la lumiere au fond, allez voir.</button>
 				</div>
 			</section>
@@ -167,7 +169,7 @@
 				<div class="section">
 					La cellule est vide, ça sent le pourri..<br>
 					Je vois quelque chose qui brille par terre.. <br>
-					<button id="key">Remuer la poussière</button>
+					<button id="reception">Remuer la poussière</button>
 					<button go="cachot">Sortir d'ici.</button>
 				</div>
 			</section>
@@ -233,7 +235,8 @@
 				<div class="section">
 					Un bibliothèque bien rempli.<br>
 					La porte du bureau a claqué, vite !<br>
-					<button go="cell2">Lire un livre.</button>
+					<button go="clue2">Lire un livre.</button>
+					<button id="cell2">Un levier caché ?</button>
 					<button go="office">Allez dans le bureau.</button>
 					<button go="lab">Sortir d'ici.</button>
 				</div>
@@ -272,9 +275,9 @@
 			<!-- FIN LVL+2 -->
 
 			<!-- OTHER -->
-			<section id="exit">	
+			<section id="end">	
 				<div class="section" >
-					Vous voyez la lumière du jour... Vous avez réussi à vous échapper !
+					Vous avez tué Dracula !
 					<button go="intro">Fin</button>
 				</div>
 			</section>
@@ -283,6 +286,14 @@
 				<div class="section" >
 					Vous êtes mort(e) ! C'est balot.
 					<button go="intro">Fin</button>
+				</div>
+			</section>
+
+			<section id="douve">	
+				<div class="section" >
+					Les douves... ça shlingue !
+					<button id="boss">Ca brille dans l'eau.</button>
+					<button go="cell8">Passer dans le trou du mur.</button>
 				</div>
 			</section>
 			<!-- FIN OTRER -->

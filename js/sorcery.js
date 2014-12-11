@@ -48,11 +48,13 @@ $( function() {
 	var monsterlife;
 	var defaultlife;
 	var percent;
+	var poison;
 
 	var error = $('#error');
 	var chapters = $("section");
 	var status = $("#status");
 	var battle = $("#battles");
+
 	
 
 	var container = $(".container");
@@ -84,10 +86,61 @@ $( function() {
 		$('#playerlife').html('PV : ' + joueur.vie);
 	}
 
-	$(document).on("click", "section button", function() {
-		if($('section').has('action')){
-			action($('action').attr('name'));
+	$(document).on("click", "section button[id]", function() {
+		var id = $(this).attr("id");
+		switch(id){
+			case 'nothing':
+				$('#error p').html('Il n\'y a rien ici !');
+				error.show();
+			break;
+			case 'eat':
+
+			break;
+			case 'clue1':
+				$('#error p').html('Indice 1');
+				error.show();
+			break;
+			case 'clue2':
+				$('#error p').html('Indice 1');
+				error.show();
+			break;
+			case 'hit':
+				$('#error p').html('Rrrrrrh Attention aux prisonniers !!! ');
+				error.show();
+				hit(Math.floor((Math.random() * 50) + 1));
+			break;
+			case 'poison':
+				$('#error p').html('Arrrrgh du poison !!! ');
+				error.show();
+				poison = setInterval(function(){
+					hit(1);
+				}, 1000);
+			break;
 		}
+	});
+
+	$(document).on("click", "#clues .clue", function() {
+		var id = $(this).attr("id");
+		var img = $('<img/>');
+		img.attr({
+			src: 'img/'+id+'.png',
+			alt: id
+		});
+		switch(id){
+			case 'clue1':
+				$('#error p').html(img);
+				error.show();
+			break;
+			case 'clue2':
+				$('#error p').html(img);
+				error.show();
+			break;
+		}
+	});
+
+
+	$(document).on("click", "section button[go]", function() {
+		// alert($(this).attr("go"));
 		if($(this).attr("door")){
 			$('#error p').html('Vous avez besoin d\'une clé !');
 			error.show();
@@ -134,7 +187,7 @@ $( function() {
 		});	
 	});
 
-	$(document).on("click", "key", function() {
+	$(document).on("click", "#items .key", function() {
 		var key = $(this).attr('id');
 		var door = $('section button').attr('door');
 		if(key == door){
@@ -143,7 +196,7 @@ $( function() {
 		}	
 	});
 	
-	$(document).on("click", "#items li", function() {
+	$(document).on("click", "#items .item", function() {
 		use($(this).attr("id"));
 		$(this).remove();
 	} );
@@ -223,6 +276,7 @@ $( function() {
 	function endGame() {
 		$('#battlezone').hide();
 		clearInterval(attaquer);
+		clearInterval(poison);
 		battleStarted = false;
 		map.hide();
 		status.hide();
@@ -240,6 +294,10 @@ $( function() {
 		if(chapter.attr('id') == 'hall'){
 			battleStarted = true;
 			poped = true;
+		}
+
+		if(chapter.has('action')){
+			action($('action').attr('name'));
 		}
 
 		//alert(largeur);
@@ -413,7 +471,7 @@ $( function() {
 	}
 
 	function clepop(id){
-		$('#items').append('<key id="'+id+'"><img src="img/items/key.jpg" alt="key"></key>');			
+		$('#items').append('<li class="key" id="'+id+'"><img src="img/items/key.jpg" alt="key"></li>');			
 	}
 
 	function potionpop(){
@@ -423,7 +481,7 @@ $( function() {
 			if(lesObjets[nb_item].type == "potion"){
 				$('#error p').html('Vous avez trouvé une potion !');
 				error.show();
-				$('#items').append('<li id="'+lesObjets[nb_item].nom+'"><img src="img/items/'+
+				$('#items').append('<li class="item" id="'+lesObjets[nb_item].nom+'"><img src="img/items/'+
 					lesObjets[nb_item].nom+'.jpg" alt="'+lesObjets[nb_item].nom+'"></li>');
 			}
 		}				
