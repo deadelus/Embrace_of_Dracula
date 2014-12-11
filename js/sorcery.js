@@ -332,6 +332,7 @@ $( function() {
 		joueur.vie = joueur.vie - pv;
 		$('#playerlife').html('PV : ' + joueur.vie);
 		if(joueur.vie <= 0){
+			$('#battlezoneboss').hide();
 			endGame();
 			gotoSection('death');
 		}
@@ -373,8 +374,10 @@ $( function() {
 			life : '100'
 		});
 		$('#boss #life').css('width', '100%');
+
 		draculalife = '100';
 		draculadefaultlife = '100';
+
 		attaquer = setInterval(function(){
 			hit(Math.floor((Math.random() * 20) + 1));
 		}, 1500);
@@ -488,61 +491,61 @@ $( function() {
 		});
 	}
 
-	function loadJoueur(pseudo, mdp){
-		$.ajax({
-		type: "GET",
-		url : 'php/load.php',
-		data : 'loadJoueur=true&pseudo='+pseudo+'&passw='+passw+'',
-		timeout: 3000,
-		dataType: 'json',
-       	 // Le type de données à recevoir, ici, du HTML.
-       	success: function(data) {
-          //alert(data); 
-          joueur = new Joueur(data.joueur.id, data.joueur.nom, data.joueur.prenom,
-           data.joueur.pseudo, data.joueur.mail, data.joueur.passw, data.joueur.exp,
-            data.joueur.vie, data.joueur.niveau, data.joueur.strength);
-      	},
-        error: function(jqXHR, textStatus, errorThrown){
-			alert(textStatus);
-			alert(errorThrown);
-		}
+	// function loadJoueur(pseudo, mdp){
+	// 	$.ajax({
+	// 	type: "GET",
+	// 	url : 'php/load.php',
+	// 	data : 'loadJoueur=true&pseudo='+pseudo+'&passw='+passw+'',
+	// 	timeout: 3000,
+	// 	dataType: 'json',
+ //       	 // Le type de données à recevoir, ici, du HTML.
+ //       	success: function(data) {
+ //          //alert(data); 
+ //          joueur = new Joueur(data.joueur.id, data.joueur.nom, data.joueur.prenom,
+ //           data.joueur.pseudo, data.joueur.mail, data.joueur.passw, data.joueur.exp,
+ //            data.joueur.vie, data.joueur.niveau, data.joueur.strength);
+ //      	},
+ //        error: function(jqXHR, textStatus, errorThrown){
+	// 		alert(textStatus);
+	// 		alert(errorThrown);
+	// 	}
 
-		});
-	}
+	// 	});
+	// }
 
-	function saveJoueur(nom,prenom,pseudo,mail,passw,vie,exp,niveau,force){
-		$.ajax({
-		type: "GET",
-		url : 'php/save.php',
-		data : 'saveJoueur=true&nom='+nom+'&prenom='+prenom+'&pseudo='+pseudo+'&mail='+
-		mail+'&passw='+passw+'&vie='+vie+'&exp='+exp+'&niveau='+niveau+'&force='+force+'', 
-		timeout: 3000,
-       	 // Le type de données à recevoir, ici, du HTML.
-        error: function(jqXHR, textStatus, errorThrown){
-			alert(textStatus);
-			alert(errorThrown);
-		}
+	// function saveJoueur(nom,prenom,pseudo,mail,passw,vie,exp,niveau,force){
+	// 	$.ajax({
+	// 	type: "GET",
+	// 	url : 'php/save.php',
+	// 	data : 'saveJoueur=true&nom='+nom+'&prenom='+prenom+'&pseudo='+pseudo+'&mail='+
+	// 	mail+'&passw='+passw+'&vie='+vie+'&exp='+exp+'&niveau='+niveau+'&force='+force+'', 
+	// 	timeout: 3000,
+ //       	 // Le type de données à recevoir, ici, du HTML.
+ //        error: function(jqXHR, textStatus, errorThrown){
+	// 		alert(textStatus);
+	// 		alert(errorThrown);
+	// 	}
 
-		});
-	}
+	// 	});
+	// }
 
-	function updateJoueur(id,nom,prenom,pseudo,mail,passw,vie,exp,niveau,force){
-		$.ajax({
-		type: "GET",
-		url : 'php/update.php',
-		data : 'upJoueur=true&id='+id+'&nom='+nom+'&prenom='+prenom+'&pseudo='+pseudo+'&mail='+mail+'&passw='+passw+'&vie='+vie+'&exp='+exp+'&niveau='+niveau+'&force='+force+'', 
-		//data : 'upInventaire=true&id=2&idObjet=8',
+	// function updateJoueur(id,nom,prenom,pseudo,mail,passw,vie,exp,niveau,force){
+	// 	$.ajax({
+	// 	type: "GET",
+	// 	url : 'php/update.php',
+	// 	data : 'upJoueur=true&id='+id+'&nom='+nom+'&prenom='+prenom+'&pseudo='+pseudo+'&mail='+mail+'&passw='+passw+'&vie='+vie+'&exp='+exp+'&niveau='+niveau+'&force='+force+'', 
+	// 	//data : 'upInventaire=true&id=2&idObjet=8',
         
-		timeout: 3000,
-		dataType: 'text',
-       	 // Le type de données à recevoir, ici, du HTML.
-        error: function(jqXHR, textStatus, errorThrown){
-			alert(textStatus);
-			alert(errorThrown);
-		}
+	// 	timeout: 3000,
+	// 	dataType: 'text',
+ //       	 // Le type de données à recevoir, ici, du HTML.
+ //        error: function(jqXHR, textStatus, errorThrown){
+	// 		alert(textStatus);
+	// 		alert(errorThrown);
+	// 	}
 
-		});
-	}
+	// 	});
+	// }
 
 
 	function monsterpop(){
@@ -585,6 +588,6 @@ $( function() {
 					lesObjets[nb_item].nom+'.jpg" alt="'+lesObjets[nb_item].nom+'"></li>');
 			}
 		}				
-}
+	}
 
-} );
+});
