@@ -509,6 +509,13 @@ section{
 	border-left: none;
 }
 
+#music a{
+  color: white;
+  float: right;
+  font-size:0.8em;
+  padding-top: 10px;
+}
+
 .section{
   color: lightGray;
   text-align: justify;

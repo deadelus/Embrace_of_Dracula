@@ -68,7 +68,7 @@ $( function() {
 	map.hide();
 	status.hide();
 	error.hide();
-	
+	$('audio').prop("volume", 0.05);
 
 	setInterval(function(){
 		if(battleStarted){
@@ -105,6 +105,11 @@ $( function() {
 		    }
 		}
 	}); 
+
+
+	$('#music a').click(function(){
+		$("audio").prop("muted",!$("audio").prop("muted"));
+	});
 
 	$(document).on("click", "section button[id]", function() {
 		var id = $(this).attr("id");
