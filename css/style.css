@@ -683,6 +683,42 @@ section{
   clear: both;
 }
 
+#battlezoneboss{
+  display:none;
+  position: fixed;
+  top: 500px;
+  right: 40%;
+  width: 314px;
+  border: 1px solid lightGray;
+  z-index: 10000000;
+  background-color: #000000;
+}
+
+#battlezoneboss ul{
+  display: block;
+  padding: 0px;
+  margin:  0px;
+  color: lightgrey;
+  clear: both;
+}
+
+#boss{
+  display: block;
+  list-style: none;
+  background-color: #999999;
+  border: 1px lightGray solid;
+  padding: 10px;
+  margin: 3px 0px;
+}
+
+#boss img{
+  background-color: #333333;
+  display: inline-block;
+  width: 70px;
+  height: 70px;
+}
+
+
 #monstre{
   display: block;
   list-style: none;

@@ -272,6 +272,18 @@ $( function() {
 			}
 		}
 	} );
+
+	//ajout dracula
+	$(document).on("click", "#battleboss .hit", function() {
+		draculalife = draculalife - joueur.force;
+		draculapercent = (draculalife/draculadefaultlife)*100; 
+		$(this).next('#life').css("width", draculapercent+'%');
+		if(draculapercent <= 0){
+			$('#battlezoneboss').fadeOut(400);
+			clearInterval(attaquer);
+			youwin();
+		}
+	} );
 	
 	function gotoSection(key) {
 		var chapter = chapters.filter("#" + key);
@@ -331,6 +343,32 @@ $( function() {
 		status.hide();
 		$('*[target=inventaire]').hide();
 	}
+//ajout dracula
+	function youwin(){
+		endGame();
+		gotoSection('end');
+	}
+//ajout dracula
+	function finalFight(){
+		battleStarted = false;
+		$('#battlezoneboss').show();
+		$('#battlezoneboss h2').html('Dracula');
+		$('#boss img').attr({
+			src : 'img/monsters/Dracula.jpg',
+		});
+		$('#boss span').attr({
+			id : 'dracula',
+		});
+		$('#boss #life').attr({
+			life : '100'
+		});
+		$('#boss #life').css('width', '100%');
+		draculalife = '100';
+		draculadefaultlife = '100';
+		attaquer = setInterval(function(){
+			hit('20');
+		}, 1500);
+	}
 
 	function slide(chapter, currentChapter){
 		//alert(currentChapter.text())
@@ -339,6 +377,10 @@ $( function() {
 		var largeur = $(document).width();
 		var hauteur = $(document).height();
 		var direction = Math.floor((Math.random() * 4) + 1);
+
+		if(chapter.attr('id') == 'roof'){ //ajout dracula
+			finalFight();
+		}
 
 		if(chapter.attr('id') == 'hall'){
 			battleStarted = true;
@@ -516,7 +558,6 @@ $( function() {
 		attaquer = setInterval(function(){
 			hit(lesMonstres[nb_monstre].force);
 		}, 1500);
-
 	}
 
 	function clepop(id){
