@@ -50,6 +50,7 @@ $( function() {
 	var percent;
 	var poison;
 	var putcode = false;
+	var draculalive= true;
 
 	var error = $('#error');
 	var chapters = $("section");
@@ -275,13 +276,16 @@ $( function() {
 
 	//ajout dracula
 	$(document).on("click", "#battleboss .hit", function() {
-		draculalife = draculalife - joueur.force;
-		draculapercent = (draculalife/draculadefaultlife)*100; 
-		$(this).next('#life').css("width", draculapercent+'%');
-		if(draculapercent <= 0){
-			$('#battlezoneboss').fadeOut(400);
-			clearInterval(attaquer);
-			youwin();
+		if (draculalive){
+			draculalife = draculalife - joueur.force;
+			draculapercent = (draculalife/draculadefaultlife)*100; 
+			$(this).next('#life').css("width", draculapercent+'%');
+			if(draculapercent <= 0){
+				draculalive=false;
+				$('#battlezoneboss').fadeOut(400);
+				clearInterval(attaquer);
+				youwin();
+			}
 		}
 	} );
 	
@@ -345,11 +349,12 @@ $( function() {
 	}
 //ajout dracula
 	function youwin(){
-		endGame();
 		gotoSection('end');
+		endGame();
 	}
 //ajout dracula
 	function finalFight(){
+		draculalive=true;
 		battleStarted = false;
 		$('#battlezoneboss').show();
 		$('#battlezoneboss h2').html('Dracula');
