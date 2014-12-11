@@ -10,12 +10,18 @@
 		
 	<body>
 		<div id="status">
+			<audio id="playeraudio" autoplay>
+				<source src="sound/song.mp3" type="audio/mpeg">
+			</audio>
 			<span id="inventaire">
 				<i>Inventaire</i>
 			</span>
 			<div id="playerlife">
 				Life : <span class="value">--</span>
 			</div>
+			<span id="music">
+				<a href="#">Musique On/Off</a>
+			</span>
 		</div>
 
 		<ul target="inventaire" class="panel">
@@ -265,7 +271,6 @@
 					"..."<br>
 					Mais elle s'est éffacé..
 					<button id="response">Ouvrir la porte du dungeon.</button>
-					<button go="office">Allez dans le bureau.</button>
 					<button go="lib">Sortir d'ici.</button>
 				</div>
 			</section>
