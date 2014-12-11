@@ -19,9 +19,9 @@
 		</div>
 
 		<ul target="inventaire" class="panel">
-			<h1 id="pseudo">
+			<!-- <h1 id="pseudo">
 				Nonamed
-			</h1>
+			</h1> -->
 			<div id="lvl">
 				Niveau : <span>1</span>
 			</div>
@@ -30,7 +30,9 @@
 			</div>
 			<h3>Inventaire</h3>
 			<ul id="items">
-				<!-- <li id="next"><img src="img/key.jpg" alt="key"></li> -->
+				<li id="next"><img src="img/key.jpg" alt="key"></li>
+				<li id="lab"><img src="img/key.jpg" alt="key"></li>
+				<li id="reception"><img src="img/key.jpg" alt="key"></li>
 			</ul>
 			<ul id="clues">
 				<!-- <li class='clue' id="clue1"><img src="img/ico-clue.png" alt="clue1"></li> -->
@@ -84,10 +86,13 @@
 					Hum, le hall. Il fait froid ici.<br>
 					J'ai cru entendre du bruit à l'étage, ce chateau est surement hanté.. <br>
 					Allez, finissons-en au plus vite !
-					<button go="reception">Monter les escaliers.</button>
+					<button go="reception" door="reception">Monter les escaliers.</button>
 					<button go="corridor">Allez dans le couloir.</button>
 					<button go="cachot">Voir le cachot.</button>
 					<button go="death">Se pourfendre avec son épée !</button>
+					<!-- test -->
+					<button go="office">test office</button>
+					<button go="roof">test roof</button>
 				</div>
 			</section>
 
@@ -107,7 +112,7 @@
 			<section id="room1">
 				<div class="section">
 					Une chambre banale, je ne trouverai rien ici..<br>
-					<button id="labo">Fouiller la chambre.</button>
+					<button id="lab">Fouiller la chambre.</button>
 					<button go="corridor">Sortir d'ici.</button>
 				</div>
 			</section>
@@ -171,7 +176,7 @@
 				<div class="section">
 					La cellule est vide, ça sent le pourri..<br>
 					Je vois quelque chose qui brille par terre.. <br>
-					<button id="clue1">Remuer la poussière</button>
+					<button id="reception">Remuer la poussière</button>
 					<button go="cachot">Sortir d'ici.</button>
 				</div>
 			</section>
@@ -180,7 +185,7 @@
 				<div class="section">
 					Des rats devore un cadavre.. C'était surement un des paysans disparu.<br>
 					Il y a un papier dans ses mains.
-					<button id="clue2">Remuer la poussière</button>
+					<button id="clue2">Prendre le papier</button>
 					<button go="cachot">Sortir d'ici.</button>
 				</div>
 			</section>
@@ -219,7 +224,7 @@
 				<div class="section">
 					Une salle de bal ! J'entends des rires mais il n'y a personne.. <br>
 					Je dois me dépècher de sortir d'ici.. Dracula..
-					<button go="lab">Entrer dans le laboratoire</button>
+					<button go="lab" door="lab">Entrer dans le laboratoire</button>
 					<button go="reception">Sortir d'ici.</button>
 				</div>
 			</section>
@@ -237,8 +242,8 @@
 				<div class="section">
 					Un bibliothèque bien rempli.<br>
 					La porte du bureau a claqué, vite !<br>
-					<button go="clue2">Lire un livre.</button>
-					<button id="cell2">Un levier caché ?</button>
+					<button id="clue2">Lire un livre.</button>
+					<button go="cell2">Un levier caché ?</button>
 					<button go="office">Allez dans le bureau.</button>
 					<button go="lab">Sortir d'ici.</button>
 				</div>
@@ -249,9 +254,9 @@
 					Il n'y a personne ici.. Il y a une porte avec une inscription.<br>
 					"..."<br>
 					Mais elle s'est éffacé..
-					<button go="dungeon">Ouvrir la porte du dungeon.</button>
+					<button id="response">Ouvrir la porte du dungeon.</button>
 					<button go="office">Allez dans le bureau.</button>
-					<button go="lab">Sortir d'ici.</button>
+					<button go="lib">Sortir d'ici.</button>
 				</div>
 			</section>
 			<!-- FIN LVL +1 -->
@@ -262,7 +267,7 @@
 					J'approche du but.. Dracula est sur le toit !<br>
 					Si j'y vais je ne pourrais plus faire mechine arrière !
 					<button go="douve">Prendre le monte-charge.</button>
-					<button go="roof">Allez sur le toit.</button>
+					<button go="roof" door="boss">Allez sur le toit.</button>
 					<button go="office">Sortir d'ici.</button>
 				</div>
 			</section>

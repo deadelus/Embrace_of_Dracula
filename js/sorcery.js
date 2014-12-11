@@ -49,6 +49,7 @@ $( function() {
 	var defaultlife;
 	var percent;
 	var poison;
+	var putcode = false;
 
 	var error = $('#error');
 	var chapters = $("section");
@@ -77,7 +78,7 @@ $( function() {
 				poped = false;
 			}
 		}
-	}, 1000);
+	}, 10000);
 
 	if(!isStarted){
 		startGame();
@@ -86,17 +87,48 @@ $( function() {
 		$('#playerlife').html('PV : ' + joueur.vie);
 	}
 
+	//CODE POUR OUVRIR LA PORTE EN MAJ
+	var k = [80, 65, 80, 73, 69, 82],  
+	n = 0;  
+	$(document).keydown(function (e) { 
+		if(putcode){
+		    if (e.keyCode === k[n++]) {  
+		        if (n === k.length) {  
+		            gotoSection('dungeon'); // à remplacer par votre code  
+		            error.hide();
+		            n = 0; 
+		        }  
+		    } else {
+		    	n = 0; 
+		    	// error.hide(); 
+		    }
+		}
+	}); 
+
 	$(document).on("click", "section button[id]", function() {
 		var id = $(this).attr("id");
-		
 		
 		switch(id){
 			case 'nothing':
 				$('#error p').html('Il n\'y a rien ici !');
 				error.show();
 			break;
+			case 'response':
+				putcode = true;
+				$('#error p').html('La porte est vérouillé par un code...');
+				error.show();
+			break;
+			case 'lab':
+				clepop(id);
+			break;
+			case 'boss':
+				clepop(id);
+			break;
+			case 'reception':
+				clepop(id);
+			break;
 			case 'eat':
-
+				joueur.vie = joueur.vie + 15;
 			break;
 			case 'clue1':
 				img.attr({
@@ -219,6 +251,7 @@ $( function() {
 
 	$(document).on("click", "#resume", function() {
 		error.hide();
+		putcode = false;
 	});
 
 	$(document).on("click", "#battles .hit", function() {
@@ -261,13 +294,13 @@ $( function() {
 	function use(id){
 		switch (id){
 			case 'Vin':
-				joueur.vie = joueur.vie + 20;
+				joueur.vie = joueur.vie + 10;
 			break;
 			case 'Potion':
-				joueur.vie = joueur.vie + 20;
+				joueur.vie = joueur.vie + 25;
 			break;
 			case 'Remontant':
-				joueur.vie = joueur.vie + 20;
+				joueur.vie = joueur.vie + 15;
 			break;
 		}
 		$('#playerlife').html('PV : ' + joueur.vie);
